@@ -1,0 +1,69 @@
+.bridal-home-container {
+    background-color: #f9f8f7;
+    color: #4a4a4a;
+    padding: 40px;
+    text-align: center;
+}
+
+.bridal-home-header h1 {
+    font-size: 3rem;
+    font-family: 'Cinzel', serif;
+    color: #b76e79;
+    margin-bottom: 10px;
+}
+
+.bridal-home-header p {
+    font-size: 1.4rem;
+    color: #b76e79;
+}
+
+.bridal-home-content {
+    margin-top: 20px;
+}
+
+.bridal-home-details p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+.bridal-home-buttons {
+    margin-top: 20px;
+}
+
+.bridal-btn {
+    font-size: 1.2rem;
+    padding: 12px 24px;
+    border: 2px solid #b76e79;
+    background-color: transparent;
+    color: #b76e79;
+    margin: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.bridal-btn:hover {
+    background-color: #b76e79;
+    color: #fff;
+}
+
+.bridal-home-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.bridal-home-img {
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.bridal-home-img:hover {
+    transform: scale(1.05);
+}

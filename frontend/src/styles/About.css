@@ -1,0 +1,89 @@
+/* About.css */
+.about-container {
+  /* margin-top: 100px; */
+  /* margin-left: 400px; */
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  background-color: #fef7fb; /* Soft pink background */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  text-align: center;
+  color: #5a189a; /* Elegant dark purple text color */
+}
+
+.about-header {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #7b2cbf; /* Highlight header with brighter purple */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 2px solid #c77dff; /* Subtle line under header */
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.detail-row:hover {
+  transform: translateY(-5px); /* Slight hover lift effect */
+  color: #7b2cbf; /* Color change on hover */
+}
+
+.icon {
+  font-size: 1.8rem;
+  margin-right: 12px;
+  color: #c77dff;
+}
+
+.text {
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #3d096e; /* Deep purple */
+}
+
+.email a, .instagram a {
+  color: #9d4edd;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.email a:hover, .instagram a:hover {
+  color: #c77dff; /* Slight color change on hover */
+}
+
+.basic-info {
+  margin-top: 25px;
+  font-size: 1rem;
+  color: #8e44ad;
+  font-style: italic;
+}
+
+a {
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .about-header {
+    font-size: 2rem;
+  }
+  
+  .detail-row {
+    font-size: 1rem;
+  }
+  
+  .icon {
+    font-size: 1.5rem;
+  }
+}

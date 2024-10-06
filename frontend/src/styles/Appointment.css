@@ -1,0 +1,119 @@
+.appointment-container {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+  }
+  
+  .overlay {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    max-width: 600px;
+    margin: 0 auto;
+    /* margin-top: 50px; */
+  }
+  
+  .appointment-title {
+    color: orange;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .appointment-subtitle {
+    color: yellow;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .booking-form {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .input-group {
+    margin: 10px 0;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #007BFF;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+  
+  .input-group input:focus {
+    border-color: #0056b3;
+    outline: none;
+  }
+  
+  .session-input-group {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  
+  .session-input-group select {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #007BFF;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+  
+  .session-input-group select:focus {
+    border-color: #0056b3;
+    outline: none;
+  }
+  
+  .add-session-btn,
+  .submit-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .add-session-btn:hover,
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .bridal-image-section {
+    margin-top: 20px;
+  }
+  
+  .bridal-image {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+  

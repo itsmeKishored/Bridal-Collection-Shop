@@ -1,0 +1,501 @@
+/* Admin Container */
+.admin-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f4f4f9;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Header */
+.admin-header {
+  background-color: #4a90e2;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+/* Main Content */
+.admin-content {
+  display: flex;
+  flex: 1;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #ffffff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar li:hover {
+  background-color: #e0e7ff;
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Content Section */
+.content-section {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px 0;
+}
+
+h3 {
+  margin: 0 0 20px;
+  font-size: 1.4em;
+  color: #333;
+}
+
+/* Jewel List */
+.jewel-list {
+  list-style: none;
+  padding: 0;
+}
+
+.jewel-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.jewel-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #357ab8;
+}
+
+/* Appointment Table */
+.appointment-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.appointment-table th,
+.appointment-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.appointment-table th {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+/* Form Styles */
+.add-jewel-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-jewel-form input,
+.add-jewel-form textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-jewel-form input:focus,
+.add-jewel-form textarea:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+/* User List */
+.user-list {
+  list-style: none;
+  padding: 0;
+}
+
+.user-list li {
+  padding: 10px;
+  border-bottom: 1px solid #eaeaea;
+  transition: background-color 0.2s;
+}
+
+.user-list li:hover {
+  background-color: #f0f8ff;
+}
+
+
+.admin-container {
+  padding: 20px;
+  background-color: #f8f8f8; /* Adjust as per your old UI */
+}
+
+.admin-nav {
+  margin-bottom: 20px;
+}
+
+.admin-nav button {
+  margin-right: 10px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.content-section {
+  background-color: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-list, .jewel-list, .appointment-table {
+  list-style: none;
+  padding: 0;
+}
+
+.jewel-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.jewel-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.appointment-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.appointment-table th, .appointment-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.appointment-table th {
+  background-color: #f2f2f2;
+}
+
+
+
+
+
+
+
+
+
+/* Orders Table Styles */
+.content-section {
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.content-section h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.orders-table thead {
+  background-color: #007bff;
+  color: white;
+  text-align: left;
+}
+
+.orders-table thead th {
+  padding: 12px 15px;
+  font-size: 16px;
+}
+
+.orders-table tbody {
+  background-color: #f9f9f9;
+}
+
+.orders-table tbody tr:nth-child(even) {
+  background-color: #e8e8e8;
+}
+
+.orders-table tbody td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.orders-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.orders-table tbody td button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.orders-table tbody td button:first-child {
+  background-color: #28a745;
+  color: white;
+  margin-right: 8px;
+}
+
+.orders-table tbody td button:first-child:hover {
+  background-color: #218838;
+}
+
+.orders-table tbody td button:last-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+.orders-table tbody td button:last-child:hover {
+  background-color: #c82333;
+}
+
+/* Hover effect for table rows */
+.orders-table tbody tr:hover {
+  background-color: #dfeffc;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .orders-table thead {
+    display: none;
+  }
+
+  .orders-table tbody, .orders-table tr, .orders-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .orders-table tr {
+    margin-bottom: 15px;
+  }
+
+  .orders-table td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  .orders-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    width: calc(50% - 20px);
+    font-weight: bold;
+    text-align: left;
+  }
+}
+
+
+
+/* Content Section */
+.content-section {
+  padding: 30px;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.content-section h3 {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #2c3e50;
+}
+
+/* Jewel List Styles */
+.jewel-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.jewel-item {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.jewel-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* Jewel Image */
+.jewel-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Jewel Info */
+.jewel-item p {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 10px 0;
+  color: #34495e;
+  text-align: center;
+}
+
+/* Buttons */
+.jewel-item button {
+  padding: 10px 15px;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.jewel-item button:first-child {
+  background-color: #3498db;
+  color: white;
+}
+
+.jewel-item button:first-child:hover {
+  background-color: #2980b9;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+}
+
+.jewel-item button:last-child {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.jewel-item button:last-child:hover {
+  background-color: #c0392b;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .jewel-list {
+    grid-template-columns: 1fr;
+  }
+
+  .jewel-item {
+    width: 100%;
+  }
+}
+
+
+
+.content-section {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.user-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-list li {
+  background-color: #fff;
+  margin-bottom: 10px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-list li:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+
+select {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+select option {
+  font-size: 14px;
+}
+
+.user-list li:hover {
+  background-color: #e9f5ff;
+}
+
+.user-list li select {
+  margin-left: 10px;
+}
+

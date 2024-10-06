@@ -1,0 +1,127 @@
+/* Container styles */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #4b6cb7, #182848);
+    font-family: 'Arial', sans-serif;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Box styles */
+.register-box {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.5);
+    animation: slideInUp 0.5s ease-in-out;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Heading styles */
+.register-box h2 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #182848;
+    position: relative;
+    animation: fadeInDown 0.5s ease-in-out;
+}
+
+/* Form group styles */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Label styles */
+.form-group label {
+    font-size: 14px;
+    color: #182848;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Input styles */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #f1f1f1;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    background: #fff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button styles */
+.btn-submit, .btn-login {
+    width: 100%;
+    padding: 12px;
+    background: #182848;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.btn-submit:hover, .btn-login:hover {
+    background: #4b6cb7;
+    transform: translateY(-3px);
+}
+
+/* Additional button styles for the login link */
+.btn-login {
+    margin-top: 20px;
+    background: #f1f1f1;
+    color: #182848;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-login:hover {
+    background: #ddd;
+    color: #182848;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    0% {
+        transform: translateY(100px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

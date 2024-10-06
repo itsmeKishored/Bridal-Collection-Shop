@@ -1,0 +1,152 @@
+/* jewels.css */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+.jewels-page {
+  padding: 20px;
+  /* margin-top: 100px; */
+}
+
+.top {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.top h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.jewelry-collection {
+  margin-top: 20px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.grid-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.grid-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.grid-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.grid-item h3 {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.grid-item p {
+  color: #777;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 0.9rem; /* Smaller button font size */
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #c5cdd1;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  width: 90%; /* Width adjusted to fit better */
+  max-width: 400px; /* Set a consistent max-width for popup */
+}
+
+.popup img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.popup .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.popup h3 {
+  font-size: 1.25rem; /* Adjusted font size */
+  margin: 10px 0;
+}
+
+.popup p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.like-share {
+  display: flex;
+  flex-direction: column; /* Change to vertical layout */
+  align-items: left; /* Align buttons to the left */
+  gap: 5px; /* Add space between buttons */
+  margin-top: 10px; /* Adjusted margin */
+}
+
+.like-share button {
+  width: 30%; /* Full width */
+  font-size: 0.8rem; /* Smaller font size for like/share buttons */
+  padding: 5px; /* Smaller padding */
+}
+
+.share-options {
+  margin-top: 5px; /* Adjusted margin */
+}
+
+.share-options p {
+  margin-bottom: 5px; /* Adjusted margin */
+}
+
+.share-options a {
+  display: inline-block;
+  margin-right: 10px;
+  color: #ff9900;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.share-options a:hover {
+  color: #0056b3;
+}
