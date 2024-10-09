@@ -81,7 +81,7 @@ const Appointment = () => {
             </div>
             <div className="input-group">
               <input
-                type="tel"
+                type="number"
                 placeholder="Your Phone Number"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}

@@ -1,4 +1,50 @@
-/* jewels.css */
+
+
+.like-share {
+  margin: 10px 0;
+}
+
+.share-options {
+  margin-top: 10px;
+}
+
+.reviews-section {
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+
+.review-item {
+  margin-bottom: 10px;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.review-form input,
+.review-form select,
+.review-form textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.review-form button {
+  padding: 10px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.review-form button:hover {
+  background-color: #4cae4c;
+}
 
 body {
   font-family: Arial, sans-serif;

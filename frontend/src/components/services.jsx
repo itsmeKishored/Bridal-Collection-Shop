@@ -64,145 +64,217 @@ const servicesData = [
 
 
 const Services = () => {
-    const [selectedService, setSelectedService] = useState(null);
-    const [selectedOption, setSelectedOption] = useState(null);
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
-  
-    const handleSelectService = (service) => {
-      setSelectedService(service);
-      setSelectedOption(null);
-    };
-  
-    const handleSelectOption = (option) => {
-      setSelectedOption(option);
-    };
-  
-    const handleSubmit = async (event) => {
-      event.preventDefault();
-  
-      const data = {
-        name,
-        email,
-        phone: '1234567890', // Placeholder for phone input
-        bookingDate: date,
-        sessions: selectedService.title,
-        option: selectedOption ? selectedOption.type : '',
-      };
-  
-      try {
-        const response = await fetch('http://localhost:3001/servicesAppointments', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
-  
-        if (response.ok) {
-          alert('Booking received!');
-          // Reset form fields
-          setSelectedService(null);
-          setSelectedOption(null);
-          setEmail('');
-          setName('');
-          setDate('');
-          setTime('');
-        } else {
-          alert('Failed to book appointment. Please try again.');
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again.');
-      }
+  const [selectedService, setSelectedService] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [persons, setPersons] = useState('');
+  const [phoneno, setPhomeno] = useState('');
+
+  const handleSelectService = (service) => {
+    setSelectedService(service);
+    setSelectedOption(null);
+  };
+
+  const handleSelectOption = (option) => {
+    setSelectedOption(option);
+  };
+
+  const isFutureDate = (inputDate) => {
+    const today = new Date();
+    const selectedDate = new Date(inputDate);
+    return selectedDate > today;
+  };
+
+  const isValidTime = (inputTime) => {
+    const [hours, minutes] = inputTime.split(':');
+    const timeInMinutes = parseInt(hours) * 60 + parseInt(minutes);
+    const startTimeInMinutes = 9 * 60; // 9:00 AM
+    const endTimeInMinutes = 17 * 60; // 5:00 PM
+    return timeInMinutes >= startTimeInMinutes && timeInMinutes <= endTimeInMinutes;
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!isFutureDate(date)) {
+      alert('Please select a future date.');
+      return;
+    }
+
+    if (!isValidTime(time)) {
+      alert('Please select a time between 9:00 AM and 5:00 PM.');
+      return;
+    }
+
+    const data = {
+      name,
+      email,
+      phone: phoneno,
+      bookingDate: date,
+      time,
+      persons,
+      sessions: selectedService.title,
+      option: selectedOption ? selectedOption.type : '',
     };
 
+    try {
+      const response = await fetch('http://localhost:3001/servicesAppointments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        alert('Booking received!');
+        // Reset form fields
+        setSelectedService(null);
+        setSelectedOption(null);
+        setEmail('');
+        setName('');
+        setDate('');
+        setTime('');
+        setPersons('');
+        setPhomeno('');
+      } else {
+        alert('Failed to book appointment. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+    }
+  };
 
   return (
     <div>
-    <div className="full-page-booking-widget">
-      <video autoPlay muted loop className="background-video">
-        <source src={makeupVideo} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <div className="overlay">
-        <div className="booking-header">
-          <h2>Booking widget</h2>
-        </div>
-
-        {selectedService && (
-          <div className="appointment-form">
-            <h3>Book Appointment for {selectedService.title}</h3>
-            {selectedOption && (
-              <p>
-                Selected Option: {selectedOption.type} - {selectedOption.price} - {selectedOption.duration}
-              </p>
-            )}
-            <form onSubmit={handleSubmit}>
-              <div>
-                <label>Name:</label>
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-              </div>
-              <div>
-                <label>Email:</label>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-              </div>
-              <div>
-                <label>Date:</label>
-                <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
-              </div>
-              <div>
-                <label>Time:</label>
-                <input type="time" value={time} onChange={(e) => setTime(e.target.value)} required />
-              </div>
-              {selectedService.options.length > 0 && (
-                <div>
-                  <label>Choose an Option:</label>
-                  <select
-                    onChange={(e) => handleSelectOption(selectedService.options.find((opt) => opt.type === e.target.value))}
-                    required
-                  >
-                    <option value="">Select an option</option>
-                    {selectedService.options.map((option) => (
-                      <option key={option.type} value={option.type}>
-                        {option.type} - {option.price} - {option.duration}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              )}
-              <div className="button">
-                <button type="submit">Submit</button>
-                <button type="button" onClick={() => setSelectedService(null)}>Cancel</button>
-              </div>
-            </form>
+      <div className="full-page-booking-widget">
+        <video autoPlay muted loop className="background-video">
+          <source src={makeupVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="overlay">
+          <div className="booking-header">
+            <h2>Booking widget</h2>
           </div>
-        )}
 
-        <div className="services-container">
-          {servicesData.map((service) => (
-            <div className="service-card" key={service.id}>
-              <div className="service-image">
-                <img src={service.image} alt={service.title} />
-              </div>
-              <div className="service-info">
-                <h3>{service.title}</h3>
-                {service.options.length > 0 && (
-                  <ul>
-                    {service.options.map((option) => (
-                      <li key={option.type}>
-                        {option.type} - {option.price} - {option.duration}
-                      </li>
-                    ))}
-                  </ul>
+          {selectedService && (
+            <div className="appointment-form">
+              <h3>Book Appointment for {selectedService.title}</h3>
+              {selectedOption && (
+                <p>
+                  Selected Option: {selectedOption.type} - {selectedOption.price} - {selectedOption.duration}
+                </p>
+              )}
+              <form onSubmit={handleSubmit}>
+                <div>
+                  <label>Name:</label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                  />
+                </div>
+                <div>
+                  <label>Email:</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+                <div>
+                  <label>Phone no:</label>
+                  <input
+                    type="number"
+                    value={phoneno}
+                    onChange={(e) => setPhomeno(e.target.value)}
+                    required
+                  />
+                </div>
+                <div>
+                  <label>Date:</label>
+                  <input
+                    type="date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    required
+                  />
+                </div>
+                <div>
+                  <label>Time:</label>
+                  <input
+                    type="time"
+                    value={time}
+                    onChange={(e) => setTime(e.target.value)}
+                    required
+                  />
+                </div>
+                <div>
+                  <label>No of persons:</label>
+                  <input
+                    type="number"
+                    value={persons}
+                    onChange={(e) => setPersons(e.target.value)}
+                    required
+                  />
+                </div>
+                {selectedService.options.length > 0 && (
+                  <div>
+                    <label>Choose an Option:</label>
+                    <select
+                      onChange={(e) =>
+                        handleSelectOption(
+                          selectedService.options.find((opt) => opt.type === e.target.value)
+                        )
+                      }
+                      required
+                    >
+                      <option value="">Select an option</option>
+                      {selectedService.options.map((option) => (
+                        <option key={option.type} value={option.type}>
+                          {option.type} - {option.price} - {option.duration}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 )}
-                <button onClick={() => handleSelectService(service)}>Select</button>
-              </div>
+                <div className="button">
+                  <button type="submit">Submit</button>
+                  <button type="button" onClick={() => setSelectedService(null)}>Cancel</button>
+                </div>
+              </form>
             </div>
-          ))}
+          )}
+
+          <div className="services-container">
+            {servicesData.map((service) => (
+              <div className="service-card" key={service.id}>
+                <div className="service-image">
+                  <img src={service.image} alt={service.title} />
+                </div>
+                <div className="service-info">
+                  <h3>{service.title}</h3>
+                  {service.options.length > 0 && (
+                    <ul>
+                      {service.options.map((option) => (
+                        <li key={option.type}>
+                          {option.type} - {option.price} - {option.duration}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <button onClick={() => handleSelectService(service)}>Select</button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div></div>
+    </div>
   );
 };
 

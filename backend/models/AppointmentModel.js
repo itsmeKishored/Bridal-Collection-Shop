@@ -7,7 +7,11 @@ const AppointmentSchema = new mongoose.Schema({
   bookingDate: { type: Date, required: true },
   sessions: { type: String, required: true },
   option: { type: String, required: false }, // if you decide to add this
+  persons: { type: Number, required: true },
 });
 
 const AppointmentModel = mongoose.model('Appointment', AppointmentSchema);
 module.exports = AppointmentModel;
+
+
+

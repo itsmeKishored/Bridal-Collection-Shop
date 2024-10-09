@@ -9,6 +9,7 @@ const ServicesAppointmentModel = require('./models/ServicesAppointmentModel');
 const NormalAppointmentModel = require('./models/NormalAppointmentModel');
 const CartModel = require('./models/CartModel');
 const OrderModel = require('./models/OrderModel');
+const FeedbackModel = require('./models/FeedbackModel');
 
 app.use(express.json());
 app.use(cors());
@@ -116,6 +117,17 @@ app.get('/cart', (req, res) => {
   res.json(global.cartItems || []);
 });
 
+
+app.delete('/cart/:itemName', (req, res) => {
+  const itemName = req.params.itemName;
+  if (global.cartItems) {
+    // Filter out the item with the given name
+    global.cartItems = global.cartItems.filter(item => item.itemName !== itemName);
+  }
+  res.json(global.cartItems || []);
+});
+
+
 // Appointment routes
 app.post('/servicesAppointments', (req, res) => {
   ServicesAppointmentModel.create(req.body)
@@ -197,6 +209,48 @@ app.put('/orders/:id/status', async (req, res) => {
     res.status(500).json({ error: 'Failed to update order status' });
   }
 });
+// Route to submit feedback
+app.post('/feedback', (req, res) => {
+  const { name, feedback } = req.body;
+  FeedbackModel.create({ name, feedback })
+    .then(feedback => res.status(201).json(feedback))
+    .catch(err => res.status(500).json({ error: err.message }));
+});
+
+// Route to get feedbacks
+app.get('/feedback', (req, res) => {
+  FeedbackModel.find()
+    .then(feedbacks => res.json(feedbacks))
+    .catch(err => res.status(500).json({ error: err.message }));
+});
+
+// Route to fetch reviews for a jewelry item
+app.get('/jewels/:id/reviews', (req, res) => {
+  JewelModel.findById(req.params.id)
+    .then(jewelryItem => res.json(jewelryItem.reviews))
+    .catch(err => res.status(500).json({ error: err.message }));
+});
+
+// Route to add a review to a jewelry item
+app.post('/jewels/:id/review', (req, res) => {
+  const { username, rating, comment } = req.body;
+  JewelModel.findById(req.params.id)
+    .then(jewelryItem => {
+      const newReview = { username, rating, comment };
+      jewelryItem.reviews.push(newReview);
+      jewelryItem.rating = calculateAverageRating(jewelryItem.reviews); // Update average rating
+      jewelryItem.save()
+        .then(updatedItem => res.json(updatedItem))
+        .catch(err => res.status(500).json({ error: err.message }));
+    })
+    .catch(err => res.status(500).json({ error: err.message }));
+});
+
+// Helper function to calculate average rating
+function calculateAverageRating(reviews) {
+  const total = reviews.reduce((sum, review) => sum + review.rating, 0);
+  return (total / reviews.length).toFixed(1); // Round to one decimal
+}
 
 
 // WhatsApp messaging function

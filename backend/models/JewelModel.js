@@ -1,11 +1,21 @@
-// models/JewelModel.js
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const JewelSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  price: { type: Number, required: true },
-  description: { type: String },
-  imageUrl: { type: String }
+const reviewSchema = new Schema({
+  username: String,
+  rating: Number,
+  comment: String,
 });
 
-module.exports = mongoose.model("Jewel", JewelSchema);
+const jewelrySchema = new Schema({
+  name: String,
+  imageUrl: String,
+  price: Number,
+  description: String,
+  rating: Number, // Overall rating (average)
+  reviews: [reviewSchema], // Array of reviews
+});
+
+const JewelModel = mongoose.model('Jewelry', jewelrySchema);
+
+module.exports = JewelModel;
