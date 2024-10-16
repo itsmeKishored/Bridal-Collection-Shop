@@ -31,7 +31,7 @@ const Admin = () => {
       try {
           const response = await axios.put(`http://localhost:3001/jewels/${editingJewel._id}`, newJewel);
           setJewels(jewels.map(jewel => (jewel._id === editingJewel._id ? response.data : jewel))); // Update the jewel in the list
-          setNewJewel({ name: '', price: '', description: '', imageUrl: '' }); // Reset the form
+          setNewJewel({ name: '', price: '', description: '', imageUrl: '' ,   category: '',}); // Reset the form
           setEditingJewel(null); // Close the edit form
       } catch (error) {
           console.error('Error updating jewel:', error);
@@ -90,11 +90,12 @@ const Admin = () => {
     try {
       const response = await axios.post('http://localhost:3001/jewels', newJewel);
       setJewels([...jewels, response.data]);
-      setNewJewel({ name: '', price: '', description: '', imageUrl: '' });
+      setNewJewel({ name: '', price: '', description: '', imageUrl: '', category: '' });  // Reset category as well
     } catch (error) {
       console.error('Error adding jewel:', error);
     }
   };
+  
 
   const handleDeleteJewel = async (id) => {
     try {
@@ -165,43 +166,72 @@ const Admin = () => {
     </div>
   );
 
-        case 'addJewel':
-          return (
-              <div className="content-section">
-                  <h3>{editingJewel ? 'Edit Jewel' : 'Add Jewel'}</h3>
-                  <form className="add-jewel-form" onSubmit={(e) => { e.preventDefault(); editingJewel ? handleUpdateJewel() : handleAddJewel(); }}>
-                      <input
-                          type="text"
-                          placeholder="Name"
-                          value={newJewel.name}
-                          onChange={e => setNewJewel({ ...newJewel, name: e.target.value })}
-                          required
-                      />
-                      <input
-                          type="number"
-                          placeholder="Price"
-                          value={newJewel.price}
-                          onChange={e => setNewJewel({ ...newJewel, price: e.target.value })}
-                          required
-                      />
-                      <textarea
-                          placeholder="Description"
-                          value={newJewel.description}
-                          onChange={e => setNewJewel({ ...newJewel, description: e.target.value })}
-                          required
-                      />
-                      <input
-                          type="text"
-                          placeholder="Image URL"
-                          value={newJewel.imageUrl}
-                          onChange={e => setNewJewel({ ...newJewel, imageUrl: e.target.value })}
-                          required
-                      />
-                      <button type="submit">{editingJewel ? 'Update Jewel' : 'Add Jewel'}</button>
-                      {editingJewel && <button type="button" onClick={() => { setEditingJewel(null); setNewJewel({ name: '', price: '', description: '', imageUrl: '' }); }}>Cancel</button>}
-                  </form>
-              </div>
-          );
+  case 'addJewel':
+    return (
+      <div className="content-section">
+        <h3>{editingJewel ? 'Edit Jewel' : 'Add Jewel'}</h3>
+        <form
+          className="add-jewel-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            editingJewel ? handleUpdateJewel() : handleAddJewel();
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Name"
+            value={newJewel.name}
+            onChange={(e) => setNewJewel({ ...newJewel, name: e.target.value })}
+            required
+          />
+          <input
+            type="number"
+            placeholder="Price"
+            value={newJewel.price}
+            onChange={(e) => setNewJewel({ ...newJewel, price: e.target.value })}
+            required
+          />
+          <textarea
+            placeholder="Description"
+            value={newJewel.description}
+            onChange={(e) => setNewJewel({ ...newJewel, description: e.target.value })}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Image URL"
+            value={newJewel.imageUrl}
+            onChange={(e) => setNewJewel({ ...newJewel, imageUrl: e.target.value })}
+            required
+          />
+          <select
+            value={newJewel.category}
+            onChange={(e) => setNewJewel({ ...newJewel, category: e.target.value })}
+            required
+          >
+            <option value="">Select Category</option>
+            <option value="Ring">Ring</option>
+            <option value="Necklace">Necklace</option>
+            <option value="Bracelet">Bracelet</option>
+            <option value="Earrings">Earrings</option>
+            {/* Add more categories as needed */}
+          </select>
+          <button type="submit">{editingJewel ? 'Update Jewel' : 'Add Jewel'}</button>
+          {editingJewel && (
+            <button
+              type="button"
+              onClick={() => {
+                setEditingJewel(null);
+                setNewJewel({ name: '', price: '', description: '', imageUrl: '', category: '' });
+              }}
+            >
+              Cancel
+            </button>
+          )}
+        </form>
+      </div>
+    );
+  
       
         case 'products':
           return (

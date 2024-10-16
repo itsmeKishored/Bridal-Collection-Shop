@@ -79,11 +79,17 @@ app.post('/jewels', (req, res) => {
     .catch(err => res.status(500).json({ error: err.message }));
 });
 
-app.get('/jewels', (req, res) => {
-  JewelModel.find()
-    .then(jewels => res.json(jewels))
-    .catch(err => res.status(500).json({ error: err.message }));
+app.get('/jewels', async (req, res) => {
+  const category = req.query.category;
+  try {
+    const query = category ? { category } : {};
+    const jewels = await JewelModel.find(query);
+    res.json(jewels);
+  } catch (error) {
+    res.status(500).send('Error fetching jewelry items');
+  }
 });
+
 
 app.put('/jewels/:id', (req, res) => {
   JewelModel.findByIdAndUpdate(req.params.id, req.body, { new: true })

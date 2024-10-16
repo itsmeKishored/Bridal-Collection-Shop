@@ -150,10 +150,10 @@ const Services = () => {
   return (
     <div>
       <div className="full-page-booking-widget">
-        <video autoPlay muted loop className="background-video">
+        {/* <video autoPlay muted loop className="background-video">
           <source src={makeupVideo} type="video/mp4" />
           Your browser does not support the video tag.
-        </video>
+        </video> */}
         <div className="overlay">
           <div className="booking-header">
             <h2>Booking widget</h2>

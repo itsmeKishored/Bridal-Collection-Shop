@@ -1,22 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '../styles/jewels.css'; // Ensure this file is included
+import '../styles/jewels.css';
 
 const Jewels = () => {
   const navigate = useNavigate();
   const [jewelryItems, setJewelryItems] = useState([]); // State to hold the jewels fetched from the database
-  const [zoomedImage, setZoomedImage] = useState(null);
-  const [likesCount, setLikesCount] = useState({});
-  const [showShareOptions, setShowShareOptions] = useState(false);
-  const [currentItem, setCurrentItem] = useState(null);
+  const [filteredItems, setFilteredItems] = useState([]); // State to hold filtered jewelry items
+  const [categories, setCategories] = useState([]); // State to hold available categories
+  const [selectedCategory, setSelectedCategory] = useState('All'); // State for the selected category
+  const [zoomedImage, setZoomedImage] = useState(null); // State for zoomed image
+  const [likesCount, setLikesCount] = useState({}); // State for like count per item
+  const [showShareOptions, setShowShareOptions] = useState(false); // State to show/hide share options
+  const [currentItem, setCurrentItem] = useState(null); // State for the currently selected item
   const [reviews, setReviews] = useState([]); // State to hold reviews
   const [newReview, setNewReview] = useState({ username: '', rating: 1, comment: '' }); // State for new review
 
-  // Fetch jewels from the database
+  // Fetch jewels and categories from the database
   useEffect(() => {
     axios.get('http://localhost:3001/jewels')
-      .then(response => setJewelryItems(response.data))
+      .then(response => {
+        setJewelryItems(response.data);
+        setFilteredItems(response.data); // Initially, display all items
+        const uniqueCategories = ['All', ...new Set(response.data.map(item => item.category))]; // Get unique categories
+        setCategories(uniqueCategories);
+      })
       .catch(error => console.error('Error fetching jewelry items:', error));
   }, []);
 
@@ -27,6 +35,7 @@ const Jewels = () => {
       .catch(error => console.error('Error fetching reviews:', error));
   };
 
+  // Handle image click (zoom in and show details)
   const handleImageClick = (item) => {
     setCurrentItem(item);
     setZoomedImage(item.imageUrl);
@@ -34,6 +43,7 @@ const Jewels = () => {
     fetchReviews(item._id); // Fetch reviews when the item is clicked
   };
 
+  // Handle like functionality
   const handleLike = (item) => {
     setLikesCount((prev) => ({
       ...prev,
@@ -41,10 +51,12 @@ const Jewels = () => {
     }));
   };
 
+  // Handle share toggle for sharing options
   const handleShareToggle = () => {
     setShowShareOptions((prev) => !prev);
   };
 
+  // Handle purchase functionality (add item to cart)
   const handlePurchase = (price, itemName, imageUrl) => {
     axios
       .post('http://localhost:3001/cart', {
@@ -55,7 +67,6 @@ const Jewels = () => {
       })
       .then((response) => {
         console.log('Item added to cart:', response.data);
-        // Optionally navigate to the cart page after adding
         navigate('/cart'); // Navigate to the cart page after adding
       })
       .catch((error) => console.error('Error adding to cart:', error));
@@ -72,15 +83,37 @@ const Jewels = () => {
       .catch(error => console.error('Error submitting review:', error));
   };
 
+  // Handle category filter change
+  const handleCategoryChange = (e) => {
+    const category = e.target.value;
+    setSelectedCategory(category);
+
+    if (category === 'All') {
+      setFilteredItems(jewelryItems); // Show all items if 'All' is selected
+    } else {
+      const filtered = jewelryItems.filter(item => item.category === category);
+      setFilteredItems(filtered); // Show only items matching the selected category
+    }
+  };
+
   return (
     <div className="jewels-page">
-      <div className='top'>
+      <div className="top">
         <h1>Jewelry Collection</h1>
+
+        {/* Category Filter Dropdown */}
+        <select value={selectedCategory} onChange={handleCategoryChange} className="category-filter">
+          {categories.map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
       </div>
       <main>
         <section className="jewelry-collection">
           <div className="grid-container">
-            {jewelryItems.map((item, index) => (
+            {filteredItems.map((item, index) => (
               <div className="grid-item" key={index} onClick={() => handleImageClick(item)}>
                 <img src={item.imageUrl} alt={item.name} />
                 <h3>{item.name}</h3>
@@ -102,7 +135,7 @@ const Jewels = () => {
             <p>Rating: {currentItem?.rating || 'No ratings yet'} ⭐</p>
             <p>Description: {currentItem?.description}</p>
             <div className="like-share">
-              {/* <button onClick={() => handleLike(currentItem)}>❤️ Like {likesCount[currentItem?.name] || 0}</button> */}
+              <button onClick={() => handleLike(currentItem)}>❤️ Like {likesCount[currentItem?.name] || 0}</button>
               <button onClick={handleShareToggle}>Share</button>
               {showShareOptions && (
                 <div className="share-options">

@@ -13,8 +13,10 @@ const jewelrySchema = new Schema({
   price: Number,
   description: String,
   rating: Number, // Overall rating (average)
+  category: String, // Add category field
   reviews: [reviewSchema], // Array of reviews
 });
+
 
 const JewelModel = mongoose.model('Jewelry', jewelrySchema);
 

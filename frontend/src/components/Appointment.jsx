@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/Appointment.css';
 import makeupVideo from '../assets/bridal.mp4';
-import bridalImage from '../assets/make.jpg';
 
 const Appointment = () => {
   const [name, setName] = useState('');
@@ -35,29 +34,39 @@ const Appointment = () => {
       console.log('Response from server:', response.data);
       alert('Booking received successfully! A confirmation email has been sent.');
 
-      // Reset form fields
       setName('');
       setEmail('');
       setPhone('');
       setBookingDate('');
-      setSessions([{ sessionType: '', timeSlot: '' }]); // Reset sessions
+      setSessions([{ sessionType: '', timeSlot: '' }]);
     } catch (error) {
       console.error('Error booking the appointment!', error);
       alert('There was an error booking the appointment. Please try again.');
     }
   };
 
-
   return (
-    <div className="appointment-container">
-      <video autoPlay muted loop className="background-video">
+    <div className="appointment-page">
+      {/* <video autoPlay muted loop className="background-video">
         <source src={makeupVideo} type="video/mp4" />
         Your browser does not support the video tag.
-      </video>
-
+      </video> */}
       <div className="overlay">
         <h2 className="appointment-title">Schedule Your Appointment</h2>
         <p className="appointment-subtitle">Book a session with our experts</p>
+
+        {/* Add description about each session type */}
+        <section className="session-info">
+          <h3>About Our Makeup Sessions</h3>
+          <ul>
+            <li><strong>Bridal:</strong> Tailored for your big day, ensuring a long-lasting, flawless look with waterproof makeup.</li>
+            <li><strong>Party:</strong> Gives you a glamorous look with a choice of shimmer or matte finish. Waterproof options available.</li>
+            <li><strong>Photoshoot:</strong> Camera-ready with high-definition products for a flawless, picture-perfect look.</li>
+            <li><strong>Engagement:</strong> A soft and elegant look with long-wear, sweat-proof makeup to last all day.</li>
+            <li><strong>Reception:</strong> A glamorous touch with waterproof makeup that ensures you look fresh throughout.</li>
+            <li><strong>Mehendi:</strong> Light, natural, and breathable makeup for long hours of celebration.</li>
+          </ul>
+        </section>
 
         <section className="booking-form">
           <form onSubmit={handleBooking}>
@@ -81,7 +90,7 @@ const Appointment = () => {
             </div>
             <div className="input-group">
               <input
-                type="number"
+                type="tel"
                 placeholder="Your Phone Number"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
@@ -134,10 +143,6 @@ const Appointment = () => {
             <button type="submit" className="submit-btn">Book Appointment</button>
           </form>
         </section>
-
-        {/* <section className="bridal-image-section">
-          <img src={bridalImage} alt="Bridal" className="bridal-image" />
-        </section> */}
       </div>
     </div>
   );
